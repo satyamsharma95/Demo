@@ -1,0 +1,60 @@
+import java.util.HashMap;
+import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+
+
+public class Test1 {
+	
+	//Disable Notification in Chrome BROWSER
+	public static void main(String [] args) throws InterruptedException
+	 
+	{
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\91807\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		Map<String,Object> prefs = new HashMap<String,Object>();
+		prefs.put("profile.default_content_setting_values.notifications", 2);
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", prefs);
+		options.addArguments("--disable-extensions");
+		WebDriver driver = new ChromeDriver(options);
+		 
+	       driver.get("http://www.myntra.com/men-footwear?f=Brand%3AWoodland");
+	       driver.manage().window().maximize();
+	       System.out.println("Application title is ============="+driver.getTitle());
+	       WebElement male_radio_button = driver.findElement(By.className("common-checkboxIndicator"));
+	       boolean status = male_radio_button.isDisplayed();
+	       System.out.println("Male radio button displayed = "+status);
+	       boolean enabled_status = male_radio_button.isEnabled(); 
+	       
+	       //To check if the user is able to select or fill the given field than enabled = true. . 
+	       System.out.println("Male radio button enabled status = "+enabled_status);
+	       //boolean selected_status = male_radio_button.isSelected();
+	       //System.out.println("Male radio button selected status = "+selected_status);
+	       male_radio_button.click();
+	       Thread.sleep(5);
+	       boolean status_new = male_radio_button.isSelected();
+	       System.out.println("Male radio button new selected status = "+status_new);
+	 
+	       
+		
+	/*	<---------Launch WebDriver for chrome------>
+	 System.setProperty("webdriver.chrome.driver", "C:\\Users\\91807\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-extensions");
+		
+		WebDriver driver = new ChromeDriver(options);
+		 
+	       driver.get("http://www.myntra.com");
+	       
+	       System.out.println("Application title is ============="+driver.getTitle());
+	 
+	       driver.manage().window().maximize();
+	*/
+	}}
+
